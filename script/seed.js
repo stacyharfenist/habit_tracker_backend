@@ -2,7 +2,7 @@
 
 const dates = [{dayNum: 1, month: 'Jan', year: 2018}, {dayNum: 2, month: 'Jan', year: 2018}, {dayNum: 3, month: 'Jan', year: 2018}]
 
-const tasks = [{name: 'Meditate'}, {name: 'Drink 100 oz Water'}, {name: 'Make bed'}]
+const tasks = [{name: 'Meditate', userId: 1}, {name: 'Drink 100 oz Water', userId: 1}, {name: 'Make bed', userId: 1}]
 
 const db = require('../server/db')
 const {User, DateTab, Task} = require('../server/db/models')

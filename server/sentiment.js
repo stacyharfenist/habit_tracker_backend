@@ -1,5 +1,5 @@
-process.env.GOOGLE_APPLICATION_CREDENTIALS = '../cred.json'
-
+//process.env.GOOGLE_APPLICATION_CREDENTIALS = '../cred.json'
+require('./env.js')
 //functions
 
 // Imports the Google Cloud client library

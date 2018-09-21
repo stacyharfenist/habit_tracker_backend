@@ -1,11 +1,11 @@
 //process.env.GOOGLE_APPLICATION_CREDENTIALS = '../cred.json'
 require('./env.js')
+const language = require('@google-cloud/language')
 //functions
 
 // Imports the Google Cloud client library
 
 const analyze = (textIn) => {
-const language = require('@google-cloud/language');
 
 // Instantiates a client
 const client = new language.LanguageServiceClient();
@@ -19,8 +19,7 @@ const document = {
 };
 
 // Detects the sentiment of the text
-client
-  .analyzeSentiment({document: document})
+return client.analyzeSentiment({document: document})
   .then(results => {
     const sentiment = results[0].documentSentiment;
 
@@ -33,9 +32,9 @@ client
         return 'not happy'
     }
   })
-  .catch(err => {
-    console.error('ERROR:', err);
-  });
+//   .catch(err => {
+//     console.error('ERROR:', err);
+//   });
 }
 
 module.exports = analyze

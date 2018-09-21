@@ -29,11 +29,15 @@ function cleanup_at_exit {
 }
 trap cleanup_at_exit EXIT
 
-cp cred.json ./server
+# cp cred.json ./server
+# git add ./server/cred.json
+# git commit -m "adding credentials before deploy"
 
 # checks out a new branch called "deploy". Note that the name "deploy" here isn't magical,
 # but it needs to match the name of the branch we specify when we push to our heroku remote.
 git checkout -b deploy
+
+cp cred.json ./server
 
 # webpack will run in "production mode"
 webpack -p

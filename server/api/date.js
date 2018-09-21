@@ -8,10 +8,10 @@ module.exports = router;
 
 router.post('/', async (req, res, next) => {
     console.log('req.body.arr', req.body.arr)
-    const month = req.body.arr[0].month
-    const year = req.body.arr[0].year
+    const month = 'Jan'
+    const year = 2018
     try {
-    const newMonthOfDates = await DateTab.bulkCreate(req.body.arr)
+    const newMonthOfDates = await DateTab.bulkCreate([{dayNum: 1, month: 'Jan', year: 2018}, {dayNum: 2, month: 'Jan', year: 2018}, {dayNum: 3, month: 'Jan', year: 2018}])
     const dates = await DateTab.findAll({
         where: {
             month: month,

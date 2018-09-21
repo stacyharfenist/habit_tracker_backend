@@ -16,7 +16,7 @@ const DateTab = db.define('date', {
     },
     year: {
         type: Sequelize.INTEGER
-    }
+    } 
 })
 
 module.exports = DateTab

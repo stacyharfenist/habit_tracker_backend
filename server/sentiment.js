@@ -1,6 +1,6 @@
-//process.env.GOOGLE_APPLICATION_CREDENTIALS = '../cred.json'
-require('./env.js')
 const language = require('@google-cloud/language')
+
+const client = new language.LanguageServiceClient();
 //functions
 
 // Imports the Google Cloud client library
@@ -8,7 +8,7 @@ const language = require('@google-cloud/language')
 const analyze = (textIn) => {
 
 // Instantiates a client
-const client = new language.LanguageServiceClient();
+
 
 // The text to analyze
 //const text = textIn;
@@ -19,19 +19,19 @@ const document = {
 };
 
 // Detects the sentiment of the text
-return client.analyzeSentiment({document: document})
-  .then(results => {
-    const sentiment = results[0].documentSentiment;
+return client.analyzeSentiment({document: document});
+//   .then(results => {
+//     const sentiment = results[0].documentSentiment;
 
-    console.log(`Text: ${textIn}`);
-    console.log(`Sentiment score: ${sentiment.score}`);
-    console.log(`Sentiment magnitude: ${sentiment.magnitude}`);
-    if(sentiment.score > 0.4) {
-        return 'happy'
-    } else {
-        return 'not happy'
-    }
-  })
+//     console.log(`Text: ${textIn}`);
+//     console.log(`Sentiment score: ${sentiment.score}`);
+//     console.log(`Sentiment magnitude: ${sentiment.magnitude}`);
+//     if(sentiment.score > 0.4) {
+//         return 'happy'
+//     } else {
+//         return 'not happy'
+//     }
+//   })
 //   .catch(err => {
 //     console.error('ERROR:', err);
 //   });

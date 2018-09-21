@@ -9,7 +9,9 @@ router.post('/', async (req, res, next) => {
         const dateId = req.body.dateId
         const userId = req.body.userId
         const newEntry = await Journal.create(req.body)
+        console.log('New Entry', newEntry)
         const sentiment = await analyze(newEntry.text)
+        console.log('Sentiment', sentiment)
         const setMood = await MoodOnDate.create({
             dateId: dateId,
             userId: userId,

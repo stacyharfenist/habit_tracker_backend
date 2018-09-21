@@ -4,6 +4,14 @@ const analyze = require('../sentiment.js')
 
 module.exports = router;
 
+const sentimentParser = (sent) => {
+    if(sent > 0.4) {
+        return 'happy'
+    } else {
+        return 'sad'
+    }
+}
+
 router.post('/', async (req, res, next) => {
     try {
         const dateId = req.body.dateId
@@ -11,11 +19,11 @@ router.post('/', async (req, res, next) => {
         const newEntry = await Journal.create(req.body)
         console.log('New Entry', newEntry)
         const sentiment = await analyze(newEntry.text)
-        console.log('Sentiment', sentiment)
+        const mood = sentimentParser(sentiment.documentSentiment.magnitude)
         const setMood = await MoodOnDate.create({
             dateId: dateId,
             userId: userId,
-            mood: sentiment
+            mood: mood
         })
         res.json(setMood)
     }catch (err) {

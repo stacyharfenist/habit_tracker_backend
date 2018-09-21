@@ -11,7 +11,7 @@ router.post('/', async (req, res, next) => {
     const month = 'Jan'
     const year = 2018
     try {
-    const newMonthOfDates = await DateTab.bulkCreate([{dayNum: 1, month: 'Jan', year: 2018}, {dayNum: 2, month: 'Jan', year: 2018}, {dayNum: 3, month: 'Jan', year: 2018}])
+    const newMonthOfDates = await DateTab.bulkCreate(req.body.arr)
     const dates = await DateTab.findAll({
         where: {
             month: month,

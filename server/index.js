@@ -1,4 +1,4 @@
-process.env.GOOGLE_APPLICATION_CREDENTIALS = "./cred.json"
+process.env.GOOGLE_APPLICATION_CREDENTIALS = "./server/cred.json"
 
 const path = require('path')
 const express = require('express')

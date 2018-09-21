@@ -29,6 +29,8 @@ function cleanup_at_exit {
 }
 trap cleanup_at_exit EXIT
 
+cp cred.json ./server
+
 # checks out a new branch called "deploy". Note that the name "deploy" here isn't magical,
 # but it needs to match the name of the branch we specify when we push to our heroku remote.
 git checkout -b deploy

@@ -6,4 +6,4 @@ secrets.js
 npm-debug.log
 yarn-error.log
 
-server/cred.json
+cred.json

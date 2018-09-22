@@ -51,6 +51,7 @@ const createApp = () => {
   app.use(express.json())
   app.use(express.urlencoded({extended: true}))
 
+
   // compression middleware
   app.use(compression())
 
@@ -65,6 +66,14 @@ const createApp = () => {
   )
   app.use(passport.initialize())
   app.use(passport.session())
+
+  //CORS
+
+  app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 
   // auth and api routes
   app.use('/auth', require('./auth'))

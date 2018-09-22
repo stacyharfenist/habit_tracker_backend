@@ -3,6 +3,16 @@ const {TaskOnDate} = require('../db/models')
 
 module.exports = router;
 
+const objCreator = (datesArr, taskArr) => {
+    const arr = []
+    datesArr.map(date =>{
+        taskArr.map(task => {
+            arr.push({dateId: date.id, taskId: task.id})
+        })
+    })
+    return arr
+}
+
 router.get('/:dateId/:taskId', async (req, res, next) => {
     const dateId = req.params.dateId
     const taskId = req.params.taskId
@@ -19,6 +29,17 @@ router.get('/:dateId/:taskId', async (req, res, next) => {
     }
 })
 
+router.post('/', async (req, res, next) => {
+    const tasks = req.body.tasks
+    const dates = req.body.dates
+    const arrOfObjs = objCreator(dates, tasks)
+    try {
+        await TaskOnDate.bulkCreate(arrOfObjs)
+        res.send().end()
+    }catch (err) {
+        next(err)
+    }
+})
 router.put('/:dateId/:taskId', async (req, res, next) => {
     const dateId = req.params.dateId
     const taskId = req.params.taskId

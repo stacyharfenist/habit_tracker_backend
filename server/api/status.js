@@ -40,7 +40,7 @@ router.post('/', async (req, res, next) => {
         next(err)
     }
 })
-router.put('/:dateId/:taskId', async (req, res, next) => {
+router.post('/update/:dateId/:taskId', async (req, res, next) => {
     const dateId = req.params.dateId
     const taskId = req.params.taskId
     try {

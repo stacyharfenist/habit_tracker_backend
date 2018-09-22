@@ -8,14 +8,15 @@ module.exports = router;
 
 router.post('/', async (req, res, next) => {
     console.log('req.body.arr', req.body.arr)
-    const month = 'Jan'
+    const month = req.body.arr[0].month
     const year = 2018
+    //const userId = req.body.userId
     try {
     const newMonthOfDates = await DateTab.bulkCreate(req.body.arr)
     const dates = await DateTab.findAll({
         where: {
             month: month,
-            year: year
+            year: year,
         }
     })
     res.json(dates)
@@ -41,16 +42,5 @@ router.get('/:month/:year', async (req, res, next) => {
     }
 })
 
-// const ObjCreator = (month, year, monthLength) => {
-//     let datesArr = []
-//     for (let i = 0; i< monthLength; i++) {
-//         let newDay = {
-//             dayNum: i+1,
-//             month: month,
-//             year: year
-//         }
-//         datesArr.push(newDay)
-//     }
-//     return datesArr
-// }
+
 

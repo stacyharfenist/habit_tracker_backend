@@ -42,5 +42,23 @@ router.get('/:month/:year', async (req, res, next) => {
     }
 })
 
+router.get('/:day/:month/:year', async(req, res, next) => {
+    const month = req.params.month
+    const day = req.params.day
+    const year = req.params.year
+    try {
+        const today = await DateTab.findAll({
+            where:{
+                dayNum: day,
+                month: month,
+                year: year
+            }
+        })
+        res.json(today)
+    } catch (err) {
+        next(err)
+    }
+})
+
 
 

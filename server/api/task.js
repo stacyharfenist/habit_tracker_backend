@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {DateTab, Task} = require('../db/models')
+const {DateTab, Task, TaskOnDate} = require('../db/models')
 
 module.exports = router;
 
@@ -36,6 +36,26 @@ router.get('/:userId', async (req, res, next) => {
             }
         })
         res.json(tasks)
+    }catch (err) {
+        next(err)
+    }
+})
+
+router.post('/:taskId/:addorsubtract', async(req, res, next) => {
+    const taskId = req.params.taskId
+    const addorsubtract = req.params.addorsubtract
+    try {
+        let task = await Task.findById(taskId)
+        const score = task.score
+        if(addorsubtract === 'happy') {
+            console.log('task', task)
+            task.score = score+1
+            task = await task.save()
+         } else if(addorsubtract === 'sad') {
+            task.score = score - 1
+            task = await task.save()
+        }
+        res.json(task.score)
     }catch (err) {
         next(err)
     }

@@ -7,7 +7,6 @@ module.exports = router;
 //req.body.arrOfDateObjs  = [{blah: blah}]
 
 router.post('/', async (req, res, next) => {
-    console.log('req.body.arr', req.body.arr)
     const month = req.body.arr[0].month
     const year = 2018
     //const userId = req.body.userId

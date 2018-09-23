@@ -8,6 +8,10 @@ const Task = db.define('task', {
     weekOrMonth: {
      type: Sequelize.STRING
     },
+    score: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
+    }
     // goal: {
     //     type: Sequelize.INTEGER
     // }

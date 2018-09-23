@@ -13,6 +13,21 @@ const objCreator = (datesArr, taskArr) => {
     return arr
 }
 
+router.get('/:dateId', async (req, res, next) => {
+    const dateId = req.params.dateId
+    try{
+        const statuses = await TaskOnDate.findAll({
+            where: {
+                dateId: dateId
+            }
+        })
+        console.log('STATUSES', statuses)
+        res.json(statuses)
+    }catch(err) {
+        next(err)
+    }
+})
+
 router.get('/:dateId/:taskId', async (req, res, next) => {
     const dateId = req.params.dateId
     const taskId = req.params.taskId
@@ -28,6 +43,7 @@ router.get('/:dateId/:taskId', async (req, res, next) => {
         next(err)
     }
 })
+
 
 router.post('/', async (req, res, next) => {
     const tasks = req.body.tasks

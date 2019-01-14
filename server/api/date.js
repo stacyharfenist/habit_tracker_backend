@@ -27,7 +27,6 @@ router.post('/', async (req, res, next) => {
 router.get('/:month/:year', async (req, res, next) => {
     const month = req.params.month
     const year = req.params.year
-    console.log('MONTH', month)
     try{
         const dates = await DateTab.findAll({
             where: {

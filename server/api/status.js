@@ -51,7 +51,6 @@ router.get('/:dateId/:taskId', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
     const tasks = req.body.tasks
     const dates = req.body.dates
-    console.log('tasks', tasks, 'dates', dates)
     const arrOfObjs = objCreator(dates, tasks)
     try {
         await TaskOnDate.bulkCreate(arrOfObjs)

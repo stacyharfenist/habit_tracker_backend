@@ -8,7 +8,7 @@ module.exports = router;
 
 router.post('/', async (req, res, next) => {
     const month = req.body.arr[0].month
-    const year = 2018
+    const year = 2019
     //const userId = req.body.userId
     try {
     const newMonthOfDates = await DateTab.bulkCreate(req.body.arr)

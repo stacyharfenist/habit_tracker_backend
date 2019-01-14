@@ -21,7 +21,6 @@ router.get('/:dateId', async (req, res, next) => {
                 dateId: dateId
             }
         })
-        console.log('STATUSES', statuses)
         res.json(statuses)
     }catch(err) {
         next(err)
@@ -38,7 +37,11 @@ router.get('/:dateId/:taskId', async (req, res, next) => {
                 taskId: taskId
             }
         })
+        if(status[0]) {
         res.json(status[0].status)
+        } else {
+            res.json(false)
+        }
     }catch (err) {
         next(err)
     }
@@ -48,6 +51,7 @@ router.get('/:dateId/:taskId', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
     const tasks = req.body.tasks
     const dates = req.body.dates
+    console.log('tasks', tasks, 'dates', dates)
     const arrOfObjs = objCreator(dates, tasks)
     try {
         await TaskOnDate.bulkCreate(arrOfObjs)
@@ -56,6 +60,7 @@ router.post('/', async (req, res, next) => {
         next(err)
     }
 })
+
 router.post('/update/:dateId/:taskId', async (req, res, next) => {
     const dateId = req.params.dateId
     const taskId = req.params.taskId

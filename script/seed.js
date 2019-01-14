@@ -1,8 +1,8 @@
 'use strict'
 
-const dates = [{dayNum: 1, month: 'Jan', year: 2018}, {dayNum: 2, month: 'Jan', year: 2018}, {dayNum: 3, month: 'Jan', year: 2018}]
+const dates = [{dayNum: 1, month: 'Sep', year: 2018}, {dayNum: 2, month: 'Sep', year: 2018}, {dayNum: 3, month: 'Sep', year: 2018}]
 
-const tasks = [{name: 'Meditate', userId: 1}, {name: 'Drink 100 oz Water', userId: 1}, {name: 'Make bed', userId: 1}, {name: 'Eat Healthy', userId: 1}, {name: 'Legs Up', userId: 1}]
+const tasks = [{name: 'Meditate', userId: 1}, {name: 'Drink 100 oz Water', userId: 1}, {name: 'Make bed', userId: 1}, ]
 
 const db = require('../server/db')
 const {User, DateTab, Task} = require('../server/db/models')
@@ -14,8 +14,9 @@ async function seed() {
   const users = await Promise.all([
     User.create({email: 'cody@email.com', password: '123'}),
     User.create({email: 'murphy@email.com', password: '123'})
-  ]).then(() => Promise.all(dates.map(date => DateTab.create(date))))
-  .then(() => Promise.all(tasks.map(task => Task.create(task))))
+  ]).then(() => Promise.all(dates.map(date => DateTab.create(date)))).then(() => Promise.all(tasks.map(task => Task.create(task))))
+
+  //.then(() => Promise.all(dates.map(date => DateTab.create(date))))
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
